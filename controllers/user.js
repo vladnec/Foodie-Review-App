@@ -31,14 +31,14 @@ exports.login = (req,res,next) =>{
 		(user) =>{
 			if(!user) {
 				return res.status(401).json({
-					error: new Error ('User not found!')
+					message: ('User not found!')
 				});
 			}
 			bcrypt.compare(req.body.password, user.password).then(
 				(valid) =>{
 					if(!valid){
 						return res.status(401).json({
-							error: new Error('Incorrect password!')
+							message:'Incorrect Password'
 						});
 					}
 					const token = jwt.sign(
